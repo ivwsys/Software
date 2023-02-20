@@ -1,0 +1,121 @@
+" Vim with all enhancements
+" source $VIMRUNTIME/vimrc_example.vim
+
+" Mouse behavior (the Windows way)
+" behave mswin
+
+" Use the internal diff if available.
+" Otherwise use the special 'diffexpr' for Windows.
+" if &diffopt !~# 'internal'
+"   set diffexpr=MyDiff()
+" endif
+" function MyDiff()
+"   let opt = '-a --binary '
+"   if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+"   if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+"   let arg1 = v:fname_in
+"   if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+"   let arg1 = substitute(arg1, '!', '\!', 'g')
+"   let arg2 = v:fname_new
+"   if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+"   let arg2 = substitute(arg2, '!', '\!', 'g')
+"   let arg3 = v:fname_out
+"   if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+"   let arg3 = substitute(arg3, '!', '\!', 'g')
+"   if $VIMRUNTIME =~ ' '
+"     if &sh =~ '\<cmd'
+"       if empty(&shellxquote)
+"         let l:shxq_sav = ''
+"         set shellxquote&
+"       endif
+"       let cmd = '"' . $VIMRUNTIME . '\diff"'
+"     else
+"       let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+"     endif
+"   else
+"     let cmd = $VIMRUNTIME . '\diff'
+"   endif
+"   let cmd = substitute(cmd, '!', '\!', 'g')
+"   silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3
+"   if exists('l:shxq_sav')
+"     let &shellxquote=l:shxq_sav
+"   endif
+" endfunction
+
+set ai!
+set cindent
+set nobackup
+set t_Co=256
+set showmatch
+set autoindent
+set smartindent
+set history=1000
+setlocal et sta sw=4 sts=4
+
+" 开启语法高亮功能
+syntax enable
+" 允许用指定语法高亮配色方案替换默认方案
+syntax on
+" 禁止光标闪烁
+set gcr=a:block-blinkon0
+" 总是显示状态栏
+set laststatus=2
+" 显示光标当前位置
+set ruler
+" 开启行号显示
+set number
+" 高亮显示当前行/列
+set cursorline
+set cursorcolumn
+" 高亮显示搜索结果
+set hlsearch
+" 配色方案
+set background=dark
+" 设置 gvim 显示字体
+set guifont=Source\ Code\ Pro:h13
+" 禁止折行
+set nowrap
+" 自适应不同语言的智能缩进
+filetype indent on
+" 将制表符扩展为空格
+set expandtab
+" 设置编辑时制表符占用空格数
+set tabstop=4
+" 设置格式化时制表符占用空格数
+set shiftwidth=4
+" 让 vim 把连续数量的空格视为一个制表符
+set softtabstop=4
+" 基于缩进或语法进行代码折叠
+" set foldmethod=indent
+set foldmethod=syntax
+" 启动 vim 时关闭折叠代码
+set nofoldenable
+colorscheme mycolors
+
+set encoding=utf-8
+set fileencodings=utf-8,ucs-bom,gb
+
+syntax on
+" colorscheme evening
+
+" for gVim.
+if has("gui_running")
+    colorscheme mycolors
+    set guifont=Source\ Code\ Pro:h13    
+    " hide menu bar.
+    set guioptions=m
+    " remove right-hand scroll bar
+    set guioptions-=r
+    set nocompatible
+    " 禁止显示滚动条
+    set guioptions-=l
+    set guioptions-=L
+    set guioptions-=r
+    set guioptions-=R
+    " 禁止显示菜单和工具条
+    set guioptions-=m
+    set guioptions-=T
+    set backspace=indent,eol,start
+else
+    colorscheme mycolors
+endif
